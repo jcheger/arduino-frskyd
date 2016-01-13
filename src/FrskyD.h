@@ -348,12 +348,16 @@ class FrskyD {
     String decodeGpsLat     (int16_t bp, uint16_t ap);
     String decodeGpsLong    (int16_t bp, uint16_t ap);
     
-    uint16_t _fixForbiddenValues (uint16_t val);
+	void   ledSet (int pin);
     byte   read ();
     
     void   sendCellVolt (uint8_t id, float val);
     void   sendData  (uint8_t id, int16_t val);
     void   sendFloat (uint8_t idb, uint8_t ida, float val);
+    
+  private:
+	int    _pinLed = -1;			//!<LED pin (-1 = disabled)
+	void   _ledWrite (int state);
 };
 
 /**

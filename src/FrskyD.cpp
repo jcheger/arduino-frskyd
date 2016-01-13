@@ -190,12 +190,20 @@ String FrskyD::decodeGpsLong (int16_t bp, uint16_t ap) {
 }
 
 /**
- * \todo forbidden values are not corrected yet
+ * Enable LED toggling while sending data
+ * \param pin (usually 13)
  */
-uint16_t FrskyD::_fixForbiddenValues (uint16_t val) {
-    uint8_t byte1 = val & 0x00ff;
-    uint8_t byte2 = (val & 0xff00) >> 8;
-    // TODO
+void FrskyD::ledSet (int pin) {
+	this->_pinLed = pin;
+	pinMode (pin, OUTPUT);
+}
+
+/**
+ * digitalWrite to LED
+ * \param pin (usually 13)
+ */
+void FrskyD::_ledWrite (int state) {
+	if (this->_pinLed != -1) digitalWrite (this->_pinLed, state);
 }
 
 /**
@@ -239,6 +247,7 @@ void FrskyD::sendData (uint8_t id, int16_t val) {
     d[0] =  val & 0x00ff;
     d[1] = (val & 0xff00) >> 8;
 
+	this->_ledWrite (HIGH);
     this->mySerial->write (0x5E);
     this->mySerial->write (id);
 
@@ -249,6 +258,7 @@ void FrskyD::sendData (uint8_t id, int16_t val) {
     }
 
     this->mySerial->write (0x5E);   // End of frame
+	this->_ledWrite (LOW);
 }
 
 /**
@@ -262,12 +272,6 @@ void FrskyD::sendFloat (uint8_t idb, uint8_t ida, float val) {
     uint16_t ap;
     if (val >= 0) ap = (val - bp) * 100;
     else          ap = (bp - val) * 100; 
-    Serial.print ("float: ");
-    Serial.print (val);
-    Serial.print (", bp: ");
-    Serial.print (bp);
-    Serial.print (", ap: ");
-    Serial.println (ap);
     this->sendData (idb, bp);
     this->sendData (ida, ap);
 }
