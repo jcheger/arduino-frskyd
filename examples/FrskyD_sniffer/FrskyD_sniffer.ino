@@ -122,11 +122,12 @@ void decode_frame (byte *buffer, int length) {
 
       case FRSKY_D_VFAS:         Serial << "VFAS:       " << FrskyD.decodeInt (&buffer[i+1]) / 10 << " [V]" << endl; break;
 
-      case FRSKY_D_VOLTAGE_B:    voltage_b = FrskyD.decodeInt (&buffer[i+1]);
-                                 Serial << "--- skip VOLTAGE_B" << endl;
-                                 break;
       case FRSKY_D_VOLTAGE_A:    voltage_a = FrskyD.decodeInt (&buffer[i+1]);;
-                                 Serial << "Voltage:    " << (float) (voltage_b * 10 + voltage_a) * 21 / 110 << " [V]" << endl;
+                                 Serial << "Voltage A:  " << (float) (voltage_b * 10 + voltage_a) * 21 / 110 << " [V]" << endl;
+                                 break;
+
+      case FRSKY_D_VOLTAGE_B:    voltage_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "Voltage B:  " << (float) (voltage_b * 10 + voltage_a) * 21 / 110 << " [V]" << endl;
                                  break;
       
       default:
