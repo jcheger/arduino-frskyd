@@ -1,4 +1,4 @@
-# arduino-frskysp
+# arduino-frskyd
 FrskyD (not SmartPort) protocol library for Arduino - Arduino 1.5 compliant repository of [frsky-arduino](https://github.com/jcheger/frsky-arduino)
 
 This library is not tested yet.
