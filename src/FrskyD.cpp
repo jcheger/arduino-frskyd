@@ -56,11 +56,10 @@
  * 
  * \version devel
  * \author Jean-Christophe Heger
- * \see https://github.com/jcheger/frsky-arduino/ - source of this library
+ * \see https://github.com/jcheger/arduino-frskyd/ - source of this library
  * \see http://www.frsky-rc.com/
  * \see http://www.open-tx.org/
- * \copyright 2014 - Jean-Christophe Heger - Released under the LGPL 3.0 license.
- * \ChangeLog 2014-06-27 - public devel release
+ * \copyright 2014-2016 - Jean-Christophe Heger - Released under the LGPL 3.0 license.
  */
 
 /**

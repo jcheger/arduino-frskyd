@@ -286,6 +286,8 @@
  * ID(s)  | 0x39
  * value  | (signed int) float * 10 [V]
  *
+ * N.B. FAS-40 and FAS-100 sensors do report wrong at low current
+ * 
  * \brief Home made current sensors (aka VFAS)
  */
 #define FRSKY_D_VFAS         0x39    // home made current sensors
@@ -298,8 +300,10 @@
  * limits | FAS: 0.5 ~ 48.0V
  *
  * The formula is bugged, with a pitiful resolution of 0.19V for a 4 bytes value (which should have a 0.01V resolution).
- * There is oviously a mistake in the design. If you want to make a voltage sensor, use the \ref FRSKY_D_VFAS ID. It's
- * much more simple.
+ * There is oviously a mistake in the design. If you want to make a DIY voltage sensor, use the \ref FRSKY_D_VFAS ID.
+ * It's much easier.
+ * 
+ * N.B. FAS-40 and FAS-100 sensors do report wrong voltage (ex. 8.21V instead of 8.32V)
  * 
  * Encoding formula
  * ----------------
@@ -315,7 +319,7 @@
  * Decoding formula
  * ----------------
  * ~~~~~~~~~~~~~~~~~~~~~
- * (float) (volts_b * 10 + vols_a) * 21 / 110 
+ * (float) (volts_b * 10 + volts_a) * 21 / 110 
  * ~~~~~~~~~~~~~~~~~~~~~
  * 
  * \brief FAS voltage
