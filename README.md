@@ -6,7 +6,7 @@ This library is not tested yet.
 # documentation
 Documentation was removed out of the repository. It is available on: https://www.ordinoscope.net/static/arduino-frskyd/docs/html/
 
-You can build it this way
+You can also build it this way (must install doxygen obviously)
 
 ````sh
  cd src
